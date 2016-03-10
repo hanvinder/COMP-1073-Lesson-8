@@ -43,12 +43,54 @@ var person ={}; /*var Person = new Objedct();
 person.age = 40;
 
 console.log(person.age);*/
+var output = "";
+    var firstParagraph = document.getElementById("firstParagraph");
 
-var person ={
-	"age": 20,
-	"name":"hanvinder",
-	"address": "360 Duckworth"
-}; /*var Person = new Objedct(); */
+    var Person = {
+        "age": 20,
+        "name": "Hanvinder",
+        "address": "360 Duckworth",
+        "city": "Barrie",
+        "province": "Ontario",
+        "familyNames": [
+            "Mehtab",
+            "Satwinder",
+            "Jaswinder",
+            "Gurneet"
+        ],
+        "sayHello":function(){
+            output += "<br><hr><br>";
+            output += Person.name + " says hello";
+        }
 
-console.log(person);
+    }; /* var Person = new Object();   */
+
+    // for every key in the Person object, loop...
+    for (var key in Person) {
+
+        // check if the key is the familyNames array
+        if (key === "familyNames") {
+           output += "<br>Family Names: <br>";
+            output += "<hr><br>";
+            output += "<ul>";
+            for (var index = 0; index < Person.familyNames.length; index++) {
+                output += "<li>" + Person.familyNames[index] + "</li>";
+            } // for loop
+            output += "</ul>";
+        } // if statement
+        
+        // check if the key is the sayHello Method
+        else if (key === "sayHello") {
+            Person.sayHello();
+        } // else if
+        
+        // for all other cases do the following...
+        else {
+
+            output += Person[key] + "<br>";
+        } // else statement
+    } // for in
+
+    firstParagraph.innerHTML = output;
+
 })();
